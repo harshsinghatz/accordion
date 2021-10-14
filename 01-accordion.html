@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Accordion</title>
+    <style>
+      /*
+      SPACING SYSTEM (px)
+      2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+      FONT SIZE SYSTEM (px)
+      10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+      */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins";
+      }
+      body {
+        font-family: sans-serif;
+      }
+      .accordion {
+        width: 700px;
+        margin: 100px auto;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .item {
+        display: grid;
+        padding: 10px;
+        grid-template-columns: auto 1fr auto;
+        row-gap: 24px;
+        column-gap: 24px;
+        align-items: center;
+        position: relative;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        transition: border-top 0.1s ease-in;
+        cursor: pointer;
+      }
+      .number,
+      .text {
+        /* color: green; */
+        font-size: 24px;
+        font-weight: 500;
+      }
+      .number {
+        color: gray;
+      }
+      .hidden-box {
+        margin: 10px auto;
+        grid-column: 2;
+        display: none;
+      }
+      .hidden-box p {
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+      .hidden-box ul {
+        color: #949494;
+        margin-left: 20px;
+      }
+      .item .text::after {
+        content: "+";
+        position: absolute;
+        right: 10px;
+      }
+      /* Active */
+      .active,
+      .item:hover {
+        border-top: 5px solid green;
+      }
+      .active .hidden-box {
+        display: block;
+      }
+      .active .number,
+      .active .text,
+      .active svg {
+        color: green;
+      }
+      .active .text::after {
+        content: "-";
+      }
+      .active .hidden-box {
+        display: block;
+      }
+      h1 {
+        text-align: center;
+        font-size: 48px;
+        margin-top: 20px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Accordion</h1>
+    <div class="accordion">
+      <div class="item">
+        <p class="number">01</p>
+        <p class="text">Where are these chair assembled?</p>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            mollitia, explicabo eius magni dicta natus at aliquid qui officia
+            ipsa numquam recusandae ad ducimus in cum debitis quisquam ex quas.
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Libero velit architecto, magnam animi voluptate suscipit</li>
+            <li>esse quis amet aut sint aspernatur odit id ipsum porro.</li>
+            <li>Veritatis cupiditate fugiat sequi sunt?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <p class="number">02</p>
+        <p class="text">How long do i have to return my chair</p>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            mollitia, explicabo eius magni dicta natus at aliquid qui officia
+            ipsa numquam recusandae ad ducimus in cum debitis quisquam ex quas.
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Libero velit architecto, magnam animi voluptate suscipit</li>
+            <li>esse quis amet aut sint aspernatur odit id ipsum porro.</li>
+            <li>Veritatis cupiditate fugiat sequi sunt?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <p class="number">03</p>
+        <p class="text">Do you ship to countries outside the EU?</p>
+
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            mollitia, explicabo eius magni dicta natus at aliquid qui officia
+            ipsa numquam recusandae ad ducimus in cum debitis quisquam ex quas.
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Libero velit architecto, magnam animi voluptate suscipit</li>
+            <li>esse quis amet aut sint aspernatur odit id ipsum porro.</li>
+            <li>Veritatis cupiditate fugiat sequi sunt?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      const items = document.getElementsByClassName("item");
+      for (let i = 0; i < items.length; i++) {
+        items[i].addEventListener("click", function () {
+          const activeItem = document.querySelector(".active");
+          if (activeItem && activeItem != this) {
+            activeItem.classList.remove("active");
+          }
+          this.classList.toggle("active");
+        });
+      }
+    </script>
+  </body>
+</html>
